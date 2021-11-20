@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Scholarship_Application.Models.StudentViewModel>
+@{
+    ViewBag.Title = "Scholarship Application";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="background-color:#eee;padding-top: 20px!important;padding-bottom: 20px!important;padding-left: 100px!important;">
+    <div class="container">
+        <div class="text-right" style="padding-bottom:20px;">
+            <a href="@Url.Action("DownloadExcel","User")" class="btn btn-primary">Export</a>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email Address</th>
+                    <th>Birth Date</th>
+                    <th>National ID</th>
+                    <th>University</th>
+                    <th>Major</th>
+                    <th>GPA</th>
+                    <th>Resume</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model)
+                {
+                    <tr>
+                        <th scope="row">@student.studentid</th>
+                        <td>@student.firstname</td>
+                        <td>@student.lastname</td>
+                        <td>@student.emailaddress</td>
+                        <td>@student.birthdate.ToString("dd/MMM/yyyy")</td>
+                        <td>@student.nationalid</td>
+                        <td>@student.university</td>
+                        <td>@student.major</td>
+                        <td>@student.gpa</td>
+                        <td>@Html.ActionLink(student.resumepath, "Download", new { fileName = student.resumepath })</td>
+                        <td><a href="@Url.Action("AcceptApplication","User",new { id=student.studentid})" class="btnEdit">Accept|</a><a data-value="@student.studentid" href="@Url.Action("RejectApplication","User",new { id=student.studentid})" class="btnEdit">Reject</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="text-center" @*style="padding-left:100px;"*@>
+            <a href="@Url.Action("Index","User")" class="btn btn-primary">Logout</a>
+        </div>
+    </div>
+</body>
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")

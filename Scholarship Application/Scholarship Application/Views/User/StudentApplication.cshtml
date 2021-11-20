@@ -1,0 +1,94 @@
+﻿@model Scholarship_Application.Models.StudentViewModel
+@{
+    ViewBag.Title = "Scholarship Application";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+@using (Html.BeginForm("SubmitApplication", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <fieldset>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(t => t.studentid);
+        <div class="container">
+            <div class="row pb_bottom">
+                <label for="firstname" class="col-sm-2">First Name : <span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(m => m.firstname, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.firstname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row pb_bottom">
+                <label for="lastname" class="col-sm-2">Last Name : <span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(m => m.lastname, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.lastname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row pb_bottom">
+                <label for="emailaddress" class="col-sm-2">Email Addrerss : <span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(m => m.emailaddress, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.emailaddress, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row pb_bottom">
+                <label for="birthdate" class="col-sm-2">Birth Date : <span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                    @Html.EditorFor(x => x.birthdate, new { style = "width:360px" })
+                    @Html.ValidationMessageFor(m => m.birthdate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row pb_bottom">
+                <label for="nationalid" class="col-sm-2">National Id : <span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(m => m.nationalid, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.nationalid, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row pb_bottom">
+                <label for="university" class="col-sm-2">University : <span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(m => m.university, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.university, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row pb_bottom">
+                <label for="major" class="col-sm-2">Major : <span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(m => m.major, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.major, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row pb_bottom">
+                <label for="gpa" class="col-sm-2">GPA : <span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(m => m.gpa, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.gpa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row pb_bottom">
+                <label for="gpa" class="col-sm-2">Resume :</label>
+                <div class="col-sm-4">
+                    <input type="file" name="File" value="@Model.resumepath"/>
+                </div>
+            </div>
+            <div class="row pb_bottom">
+                <div class="col-sm-4 text-center" style="padding-left:100px;">
+                    <a href="@Url.Action("Index","User")" class="btn btn-primary">Logout</a>&nbsp;&nbsp;
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </fieldset>
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")

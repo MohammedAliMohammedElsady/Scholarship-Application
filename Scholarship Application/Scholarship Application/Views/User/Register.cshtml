@@ -1,0 +1,59 @@
+﻿@model Scholarship_Application.Models.UserViewModel
+@{
+    ViewBag.Title = "Scholarship Application";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+@using (Html.BeginForm("Register", "User", FormMethod.Post))
+{
+    <fieldset>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="container">
+            <div class="row pb_bottom">
+                <label for="UserName" class="col-sm-2">User Name : <span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row pb_bottom">
+                <label for="Password" class="col-sm-2">Password : <span class="text-danger">*</span></label>
+                <div class="col-sm-4">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row pb_bottom">
+                <label for="Password" class="col-sm-2">IsAdmin :</label>
+                <div class="col-sm-4">
+                    @Html.CheckBoxFor(m => m.IsAdmin, new { @class = "form-check-input" })
+                </div>
+            </div>
+
+            @if (Session["Message"] != null)
+            {
+                <div class="row pb_bottom">
+                    <div class="col-sm-8 text-center" style="padding-right:120px;">
+                        <span class="text-danger">@Session["Message"] </span>
+                    </div>
+                </div>
+            }
+            <div class="row pb_bottom">
+                <div class="col-sm-4 text-center" style="padding-left:100px;">
+                    <input type="submit" value="Signin" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </fieldset>
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DemoModelStoreContainer" CdmEntityContainer="DemoEntities">
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="DemoModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="studentid" ColumnName="studentid" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="emailaddress" ColumnName="emailaddress" />
+          <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+          <ScalarProperty Name="nationalid" ColumnName="nationalid" />
+          <ScalarProperty Name="university" ColumnName="university" />
+          <ScalarProperty Name="major" ColumnName="major" />
+          <ScalarProperty Name="gpa" ColumnName="gpa" />
+          <ScalarProperty Name="resumepath" ColumnName="resumepath" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="isaccept" ColumnName="isaccept" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="DemoModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="isadmin" ColumnName="isadmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
